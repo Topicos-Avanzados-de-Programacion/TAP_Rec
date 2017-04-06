@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TAP_Recordatorios.iml" filepath="$PROJECT_DIR$/TAP_Recordatorios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TAP_Rec.iml" filepath="$PROJECT_DIR$/TAP_Rec.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
