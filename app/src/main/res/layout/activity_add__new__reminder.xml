@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteY="2dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
@@ -74,7 +74,40 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/llPadre"
+        tools:layout_editor_absoluteX="8dp">
+
+        <EditText
+            android:id="@+id/et_fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:hint="dd-mm-aaaa"/>
+
+        <EditText
+            android:id="@+id/et_hora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:hint="hh-mm"/>
+    </LinearLayout>
+
+    <!-- ScrollView -->
+    <!--<ScrollView
         android:layout_width="368dp"
         android:layout_height="462dp"
         android:layout_below="@+id/llPadre"
@@ -187,5 +220,5 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </ScrollView>-->
 </android.support.constraint.ConstraintLayout>
