@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
-
     }
     public void onClick(View view){
         Intent Buscar=new Intent(this, Add_New_Reminder.class);
