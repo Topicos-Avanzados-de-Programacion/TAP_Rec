@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -57,10 +58,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     }
 
     public void onClick(View v){
-        Calendar c = Calendar.getInstance();
-        hora= c.get(Calendar.HOUR_OF_DAY);
-        minutos= c.get(Calendar.MINUTE);
-
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -68,17 +65,17 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             }
         },hora,minutos,false);
         timePickerDialog.show();
-    }
+        }
+    
+        public void mostrarFecha(){
+            et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
+        }
 
-    public void mostrarFecha(){
-        et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id){
-            case 0:
-                return new DatePickerDialog(this, oyenteSelectorFecha, anio, mes, dia);
+        @Override
+        protected Dialog onCreateDialog(int id) {
+            switch (id){
+                case 0:
+                    return new DatePickerDialog(this, oyenteSelectorFecha, anio, mes, dia);
         }
         return null;
     }
@@ -86,4 +83,5 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     public void mostrarCalendario(View control){
         showDialog(TIPO_DIALOGO);
     }
+
 }
