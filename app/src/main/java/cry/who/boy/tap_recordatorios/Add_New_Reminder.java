@@ -6,15 +6,19 @@ import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
     Button btn_fecha, btn_hora;
     EditText et_fecha, et_hora;
     private int dia, mes, anio, hora, minutos;
+    Spinner Importancia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,10 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         et_hora= (EditText) findViewById(R.id.et_hora);
         btn_fecha.setOnClickListener(this);
         btn_hora.setOnClickListener(this);
+
+        Importancia = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Importancia, android.R.layout.simple_spinner_item);
+        Importancia.setAdapter(adapter);
     }
 
     public void onClick(View v){
