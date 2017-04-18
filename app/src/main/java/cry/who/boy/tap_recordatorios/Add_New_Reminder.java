@@ -33,7 +33,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         btn_hora= (Button) findViewById(R.id.btn_hora);
         et_fecha= (EditText) findViewById(R.id.et_fecha);
         et_hora= (EditText) findViewById(R.id.et_hora);
-        btn_fecha.setOnClickListener(this);
         btn_hora.setOnClickListener(this);
 
         //Spinner Importancia
@@ -57,7 +56,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         };
     }
 
-    public void onClick(View v){
+    public void onClick (View v){
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -65,17 +64,17 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             }
         },hora,minutos,false);
         timePickerDialog.show();
-        }
+    }
     
-        public void mostrarFecha(){
-            et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
-        }
+    public void mostrarFecha(){
+        et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
+    }
 
-        @Override
-        protected Dialog onCreateDialog(int id) {
-            switch (id){
-                case 0:
-                    return new DatePickerDialog(this, oyenteSelectorFecha, anio, mes, dia);
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id){
+            case 0:
+                return new DatePickerDialog(this, oyenteSelectorFecha, anio, mes, dia);
         }
         return null;
     }
