@@ -56,16 +56,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         };
     }
 
-    public void onClick (View v){
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                et_hora.setText(hourOfDay+":"+minute);
-            }
-        },hora,minutos,false);
-        timePickerDialog.show();
-    }
-    
+    //Metodos para Fecha
     public void mostrarFecha(){
         et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
     }
@@ -81,6 +72,22 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
 
     public void mostrarCalendario(View control){
         showDialog(TIPO_DIALOGO);
+    }
+
+    //Metodos para Hora
+    public void onClick (View v){
+        Calendar c = Calendar.getInstance();
+        minutos=c.get(Calendar.MINUTE);
+        hora=c.get(Calendar.HOUR_OF_DAY);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                hora=hourOfDay;
+                minutos=minute;
+                et_hora.setText(hora+":"+minutos);
+            }
+        },hora,minutos,false);
+        timePickerDialog.show();
     }
 
 }
