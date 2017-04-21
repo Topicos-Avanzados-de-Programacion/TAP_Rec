@@ -52,6 +52,8 @@ public class ListViewAdapter extends BaseAdapter {
 
         imagen.setImageResource(arrayRec.get(position).getColor());
         titulo.setText(arrayRec.get(position).getTitulo());
+        fecha.setText(arrayRec.get(position).getFecha());
+        hora.setText(arrayRec.get(position).getHora());
         descripcion.setText(arrayRec.get(position).getDescripcion());
         return vistaRec;
     }
