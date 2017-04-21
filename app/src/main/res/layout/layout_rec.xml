@@ -18,6 +18,23 @@
             android:id="@+id/loTitulo"
             android:text="Este es el titulo"
             android:textColor="@android:color/black"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/loFecha"
+                android:text="Esta es la fecha"/>
+
+            <TextView
+                android:id="@+id/loHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="Esta es la hora" />
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
