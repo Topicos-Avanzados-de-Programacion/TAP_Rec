@@ -48,10 +48,10 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         oyenteSelectorFecha = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                anio = year;
-                mes = month;
-                dia = dayOfMonth;
-                mostrarFecha();
+            anio = year;
+            mes = month;
+            dia = dayOfMonth;
+            mostrarFecha();
             }
         };
     }
