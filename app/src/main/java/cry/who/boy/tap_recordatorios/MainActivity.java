@@ -1,5 +1,6 @@
 package cry.who.boy.tap_recordatorios;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,14 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         lista=(ListView)(findViewById(R.id.Lista));
         cargarLista();
     }
@@ -46,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
+    }
+    public void onClick(View view){
+        Intent Buscar=new Intent(this, Add_New_Reminder.class);
+        startActivity(Buscar);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,4 +65,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
