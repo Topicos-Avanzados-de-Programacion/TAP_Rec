@@ -8,8 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView lista=null;
+    ArrayList<Rec> arrayRec=new ArrayList<>();
+    ListViewAdapter adapter=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +35,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        lista=(ListView)(findViewById(R.id.Lista));
+        cargarLista();
     }
+    private void cargarLista(){
+        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 1","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 2","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 3","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 4","20/04/17","10:42 p.m.","Este es un recordatorio"));
 
+        adapter=new ListViewAdapter(arrayRec,this);
+        lista.setAdapter(adapter);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
