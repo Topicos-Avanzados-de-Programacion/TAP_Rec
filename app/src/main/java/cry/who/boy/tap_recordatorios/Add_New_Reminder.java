@@ -23,7 +23,9 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
     Spinner Importancia;
-
+    //Variables para saber la fecha de creación del recordatorio
+    private int d_act, m_act, a_act;
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,9 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         dia= c.get(Calendar.DAY_OF_MONTH);
         mes= c.get(Calendar.MONTH);
         anio= c.get(Calendar.YEAR);
+        d_act= c.get(Calendar.DAY_OF_MONTH);
+        m_act= c.get(Calendar.MONTH);
+        a_act= c.get(Calendar.YEAR);
         mostrarFecha();
         oyenteSelectorFecha = new DatePickerDialog.OnDateSetListener() {
             @Override
