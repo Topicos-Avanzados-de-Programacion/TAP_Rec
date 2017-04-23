@@ -3,6 +3,7 @@ package cry.who.boy.tap_recordatorios;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,8 +18,8 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
-    private Button btn_fecha, btn_hora;
-    private EditText et_fecha, et_hora;
+    private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
+    private EditText et_fecha, et_hora, et_Titulo, et_Desc;
     private int dia, mes, anio, hora, minutos;
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
@@ -31,10 +32,14 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__new__reminder);
 
-        btn_fecha= (Button) findViewById(R.id.btn_fecha);
-        btn_hora= (Button) findViewById(R.id.btn_hora);
-        et_fecha= (EditText) findViewById(R.id.et_fecha);
-        et_hora= (EditText) findViewById(R.id.et_hora);
+        btn_cancelar = (Button) findViewById(R.id.btn_cancel);
+        btn_ok = (Button) findViewById(R.id.btn_ok);
+        btn_fecha = (Button) findViewById(R.id.btn_fecha);
+        btn_hora = (Button) findViewById(R.id.btn_hora);
+        et_fecha = (EditText) findViewById(R.id.et_fecha);
+        et_hora = (EditText) findViewById(R.id.et_hora);
+        et_Titulo = (EditText) findViewById(R.id.et_title);
+        et_Desc = (EditText) findViewById(R.id.et_text);
         btn_hora.setOnClickListener(this);
 
         //Spinner Importancia
@@ -93,6 +98,21 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             }
         },hora,minutos,false);
         timePickerDialog.show();
+    }
+
+    public void MandarDatos(){
+        String Titulo = et_Titulo.getText().toString();
+        String Fecha = et_fecha.getText().toString();
+        String Hora = et_hora.getText().toString();
+        String Desc = et_Desc.getText().toString();
+        String Import;// Falta aún saber cómo trabajar el Spinner
+
+        Intent intent = new Intent(Add_New_Reminder.this,MainActivity.class);
+        intent.putExtra("Titulo", Titulo);
+        intent.putExtra("Fecha", Fecha);
+        intent.putExtra("Hora", Hora);
+        intent.putExtra("Descripcion", Desc);
+        //intent.putExtra("Importancia", Import);
     }
 
 }

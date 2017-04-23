@@ -14,7 +14,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    DatabaseHelper myDb;
     private ListView lista=null;
     ArrayList<Rec> arrayRec=new ArrayList<>();
     ListViewAdapter adapter=null;
@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        myDb = new DatabaseHelper(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lista=(ListView)(findViewById(R.id.Lista));
