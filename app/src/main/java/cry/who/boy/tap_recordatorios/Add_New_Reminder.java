@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
     private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
@@ -101,19 +102,34 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     }
 
     public void MandarDatos(View vista){
+
         String Titulo = et_Titulo.getText().toString();
         String Fecha = et_fecha.getText().toString();
         String Hora = et_hora.getText().toString();
         String Desc = et_Desc.getText().toString();
         String Import =Importancia.getSelectedItem().toString();
 
-        Intent intent = new Intent(Add_New_Reminder.this,MainActivity.class);
-        intent.putExtra("Titulo", Titulo);
-        intent.putExtra("Fecha", Fecha);
-        intent.putExtra("Hora", Hora);
-        intent.putExtra("Descripcion", Desc);
-        intent.putExtra("Importancia", Import);
-        startActivity(intent);
+        if(Hora == null
+                || Hora.equals("")
+                || Hora.trim().length()==0){
+            Hora= "Todo el día";
+        }
+
+        if(Titulo == null || Titulo.equals("") || Titulo.trim().length()==0 ||
+                Fecha == null || Fecha.equals("") || Fecha.trim().length()==0){
+            Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
+            msn.show();
+        }else {
+            Intent intent = new Intent(Add_New_Reminder.this, MainActivity.class);
+            intent.putExtra("Titulo", Titulo);
+            intent.putExtra("Fecha", Fecha);
+            intent.putExtra("Hora", Hora);
+            intent.putExtra("Descripcion", Desc);
+            intent.putExtra("Importancia", Import);
+            startActivity(intent);
+            Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+            msn.show();
+        }
     }
 
 }
