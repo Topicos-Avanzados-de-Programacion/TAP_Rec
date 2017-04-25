@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
         cargarLista();
     }
     private void cargarLista(){
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 1","20/04/17","10:42 p.m.","Este es un recordatorio"));
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 2","20/04/17","10:42 p.m.","Este es un recordatorio"));
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 3","20/04/17","10:42 p.m.","Este es un recordatorio"));
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 4","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.Rojo,"recordatorio 1","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.Amarillo,"recordatorio 2","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.Amarillo,"recordatorio 3","20/04/17","10:42 p.m.","Este es un recordatorio"));
+        arrayRec.add(new Rec(R.mipmap.Verde,"recordatorio 4","20/04/17","10:42 p.m.","Este es un recordatorio"));
 
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
