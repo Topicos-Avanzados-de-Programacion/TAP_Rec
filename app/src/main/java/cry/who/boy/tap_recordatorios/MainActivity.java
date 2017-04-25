@@ -68,4 +68,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void Recoger_Extras(View datos){
+        getIntent().getExtras().getString("Titulo");
+        getIntent().getExtras().getString("Fecha");
+        getIntent().getExtras().getString("Hora");
+        getIntent().getExtras().getString("Descripcion");
+        getIntent().getExtras().getString("Importancia");
+    }
 }

@@ -100,19 +100,20 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         timePickerDialog.show();
     }
 
-    public void MandarDatos(){
+    public void MandarDatos(View vista){
         String Titulo = et_Titulo.getText().toString();
         String Fecha = et_fecha.getText().toString();
         String Hora = et_hora.getText().toString();
         String Desc = et_Desc.getText().toString();
-        String Import;// Falta aún saber cómo trabajar el Spinner
+        String Import =Importancia.getSelectedItem().toString();
 
         Intent intent = new Intent(Add_New_Reminder.this,MainActivity.class);
         intent.putExtra("Titulo", Titulo);
         intent.putExtra("Fecha", Fecha);
         intent.putExtra("Hora", Hora);
         intent.putExtra("Descripcion", Desc);
-        //intent.putExtra("Importancia", Import);
+        intent.putExtra("Importancia", Import);
+        startActivity(intent);
     }
 
 }
