@@ -70,19 +70,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Recoger_Extras(View datos){
-        Intent i = getIntent();
-        Bundle extras = i.getExtras();
-
-        if(extras!=null) {
             getIntent().getExtras().getString("Titulo");
             getIntent().getExtras().getString("Fecha");
             getIntent().getExtras().getString("Hora");
             getIntent().getExtras().getString("Descripcion");
             getIntent().getExtras().getString("Importancia");
-        }else{
-            Toast msn = Toast.makeText(getApplicationContext(), "Inserte un texto", Toast.LENGTH_SHORT);
-            msn.show();
-        }
 
     }
 }
