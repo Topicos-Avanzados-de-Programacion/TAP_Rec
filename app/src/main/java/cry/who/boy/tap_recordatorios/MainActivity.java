@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     private ListView lista=null;
-    ArrayList<Rec> arrayRec=new ArrayList<>();
+    ArrayList<Rec> arrayRec=null;
     ListViewAdapter adapter=null;
 
     @Override
@@ -29,7 +29,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         myDb = new DatabaseHelper(this);
+        arrayRec=new ArrayList<>();
 
+        Intent intent=getIntent();
+        Bundle extras=intent.getExtras();
+
+        if (extras!=null){
+            guardarDatos(extras);
+        }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         lista=(ListView)(findViewById(R.id.Lista));
         cargarLista();
@@ -69,12 +76,25 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Recoger_Extras(View datos){
-            getIntent().getExtras().getString("Titulo");
-            getIntent().getExtras().getString("Fecha");
-            getIntent().getExtras().getString("Hora");
-            getIntent().getExtras().getString("Descripcion");
-            getIntent().getExtras().getString("Importancia");
-
+    public void guardarDatos(Bundle extras){
+        String titulo=extras.getString("Titulo");
+        String fecha=extras.getString("Fecha");
+        String hora=extras.getString("Hora");
+        String descripcion=extras.getString("Descripcion");
+        String importancia=extras.getString("Importancia");
+        int image = 0;
+        switch (importancia){
+            case "Alta":
+                image=R.drawable.ic_rojo;
+                break;
+            case "Normal":
+                image=R.drawable.ic_amarillo;
+                break;
+            case "Baja":
+                image=R.drawable.ic_verde;
+                break;
+        }
+        boolean guardado=myDb.insertData(titulo,fecha,hora,descripcion,importancia);
+        arrayRec.add(new Rec(image,titulo,fecha,hora,descripcion));
     }
 }
