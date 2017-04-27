@@ -25,6 +25,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
     Spinner Importancia;
+    DatabaseHelper myDb;
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
     //
@@ -42,6 +43,8 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         et_Titulo = (EditText) findViewById(R.id.et_title);
         et_Desc = (EditText) findViewById(R.id.et_text);
         btn_hora.setOnClickListener(this);
+
+        myDb = new DatabaseHelper(this);
 
         //Spinner Importancia
         Importancia = (Spinner) findViewById(R.id.spinner);
@@ -120,16 +123,34 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
             msn.show();
         }else {
-            Intent intent = new Intent(Add_New_Reminder.this, MainActivity.class);
-            intent.putExtra("Titulo", Titulo);
-            intent.putExtra("Fecha", Fecha);
-            intent.putExtra("Hora", Hora);
-            intent.putExtra("Descripcion", Desc);
-            intent.putExtra("Importancia", Import);
-            startActivity(intent);
-            Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
-            msn.show();
+            /*boolean veri=myDb.insertData(Titulo,Fecha,Hora,Desc,Import);
+            if (veri){
+                Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+                msn.show();*/
+                Intent intent = new Intent(Add_New_Reminder.this, MainActivity.class);
+                startActivity(intent);
+            /*}else{
+                Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
+                msn.show();
+            }*/
+
+
         }
     }
 
+    public void guardar(View v) {
+        String Titulo = et_Titulo.getText().toString();
+        String Fecha = et_fecha.getText().toString();
+        String Hora = et_hora.getText().toString();
+        String Desc = et_Desc.getText().toString();
+        String Import = Importancia.getSelectedItem().toString();
+        boolean veri = myDb.insertData(Titulo, Fecha, Hora, Desc, Import);
+        if (veri) {
+            Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+            msn.show();
+        } else {
+            Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
+            msn.show();
+        }
+    }
 }

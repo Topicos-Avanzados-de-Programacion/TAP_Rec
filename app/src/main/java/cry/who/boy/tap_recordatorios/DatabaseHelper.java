@@ -24,12 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Crear tabla " + TABLE_NAME + " (TITULO TEXT PRIMARY KEY, FECHA TEXT, HORA TEXT, DESCRIPCION TEXT, IMPORTANCIA TEXT)");
+        db.execSQL("Crear tabla " + TABLE_NAME + " (ID INT PRIMARY KEY AUTOINCREMENT, TITULO TEXT, FECHA TEXT, HORA TEXT, DESCRIPCION TEXT, IMPORTANCIA TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXIST "+TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         onCreate(db);
     }
 
