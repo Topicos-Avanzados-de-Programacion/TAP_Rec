@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Crear tabla " + TABLE_NAME + " ("+COL_1+" TEXT, "+COL_2+" TEXT, "+COL_3+" TEXT, "+COL_4+" TEXT, "+COL_5+" INTEGER)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " ("+COL_1+" TEXT, "+COL_2+" TEXT, "+COL_3+" TEXT, "+COL_4+" TEXT, "+COL_5+" INTEGER)");
     }
 
     @Override
@@ -33,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertData(Rec rec){
+    public boolean insertData(Rec rec){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,rec.getTitulo());
@@ -41,9 +41,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_3, rec.getHora());
         contentValues.put(COL_4, rec.getDescripcion());
         contentValues.put(COL_5, rec.getColor());
-        db.insert(TABLE_NAME, null, contentValues);
+        long veri=db.insert(TABLE_NAME, null, contentValues);
         db.close();
-
+        if (veri==-1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }

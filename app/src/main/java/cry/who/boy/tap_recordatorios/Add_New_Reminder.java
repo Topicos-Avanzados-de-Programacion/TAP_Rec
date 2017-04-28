@@ -111,39 +111,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         String Hora = et_hora.getText().toString();
         String Desc = et_Desc.getText().toString();
         String Import =Importancia.getSelectedItem().toString();
-
-        if(Hora == null
-                || Hora.equals("")
-                || Hora.trim().length()==0){
-            Hora= "Todo el día";
-        }
-
-        if(Titulo == null || Titulo.equals("") || Titulo.trim().length()==0 ||
-                Fecha == null || Fecha.equals("") || Fecha.trim().length()==0){
-            Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
-            msn.show();
-        }else {
-            /*boolean veri=myDb.insertData(Titulo,Fecha,Hora,Desc,Import);
-            if (veri){
-                Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
-                msn.show();*/
-                Intent intent = new Intent(Add_New_Reminder.this, MainActivity.class);
-                startActivity(intent);
-            /*}else{
-                Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
-                msn.show();
-            }*/
-
-
-        }
-    }
-
-    public void guardar(View v) {
-        String Titulo = et_Titulo.getText().toString();
-        String Fecha = et_fecha.getText().toString();
-        String Hora = et_hora.getText().toString();
-        String Desc = et_Desc.getText().toString();
-        String Import = Importancia.getSelectedItem().toString();
         int Imagen = 0;
         switch (Import){
             case "Alta":
@@ -156,9 +123,32 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
                 Imagen=R.drawable.ic_verde;
                 break;
         }
-        Rec rec=new Rec(Imagen,Titulo, Fecha, Hora, Desc);
+        if(Hora == null
+                || Hora.equals("")
+                || Hora.trim().length()==0){
+            Hora= "Todo el día";
+        }
 
-        myDb.insertData(rec);
+        if(Titulo == null || Titulo.equals("") || Titulo.trim().length()==0 ||
+                Fecha == null || Fecha.equals("") || Fecha.trim().length()==0){
+            Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
+            msn.show();
+        }else {
+            Rec rec=new Rec(Imagen,Titulo, Fecha, Hora, Desc);
+            boolean veri=myDb.insertData(rec);
+            if (veri){
+                Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+                msn.show();
+                Intent intent = new Intent(Add_New_Reminder.this, MainActivity.class);
+                startActivity(intent);
+            }else{
+                Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
+                msn.show();
+            }
 
+
+        }
     }
+
+    
 }
