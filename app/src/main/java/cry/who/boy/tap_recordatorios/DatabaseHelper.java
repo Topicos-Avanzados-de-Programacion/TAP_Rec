@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("Crear tabla " + TABLE_NAME + " (ID INT PRIMARY KEY AUTOINCREMENT, TITULO TEXT, FECHA TEXT, HORA TEXT, DESCRIPCION TEXT, IMPORTANCIA TEXT)");
+        db.execSQL("Crear tabla " + TABLE_NAME + " ("+COL_1+" TEXT, "+COL_2+" TEXT, "+COL_3+" TEXT, "+COL_4+" TEXT, "+COL_5+" INTEGER)");
     }
 
     @Override
@@ -33,20 +33,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String Titulo, String Fecha, String Hora, String Descripcion, String Importancia){
+    public void insertData(Rec rec){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1,Titulo);
-        contentValues.put(COL_2,Fecha);
-        contentValues.put(COL_3, Hora);
-        contentValues.put(COL_4, Descripcion);
-        contentValues.put(COL_5, Importancia);
+        contentValues.put(COL_1,rec.getTitulo());
+        contentValues.put(COL_2,rec.getFecha());
+        contentValues.put(COL_3, rec.getHora());
+        contentValues.put(COL_4, rec.getDescripcion());
+        contentValues.put(COL_5, rec.getColor());
+        db.insert(TABLE_NAME, null, contentValues);
+        db.close();
 
-        long result = db.insert(TABLE_NAME, null, contentValues);
-        if(result == -1){
-            return false;
-        }else{
-            return true;
-        }
     }
+
 }

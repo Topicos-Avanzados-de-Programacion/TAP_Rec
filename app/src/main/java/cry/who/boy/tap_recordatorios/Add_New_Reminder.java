@@ -25,7 +25,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
     Spinner Importancia;
-    DatabaseHelper myDb;
+    private DatabaseHelper myDb;
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
     //
@@ -144,13 +144,21 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         String Hora = et_hora.getText().toString();
         String Desc = et_Desc.getText().toString();
         String Import = Importancia.getSelectedItem().toString();
-        boolean veri = myDb.insertData(Titulo, Fecha, Hora, Desc, Import);
-        if (veri) {
-            Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
-            msn.show();
-        } else {
-            Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
-            msn.show();
+        int Imagen = 0;
+        switch (Import){
+            case "Alta":
+                Imagen=R.drawable.ic_rojo;
+                break;
+            case "Normal":
+                Imagen=R.drawable.ic_amarillo;
+                break;
+            case "Baja":
+                Imagen=R.drawable.ic_verde;
+                break;
         }
+        Rec rec=new Rec(Imagen,Titulo, Fecha, Hora, Desc);
+
+        myDb.insertData(rec);
+
     }
 }
