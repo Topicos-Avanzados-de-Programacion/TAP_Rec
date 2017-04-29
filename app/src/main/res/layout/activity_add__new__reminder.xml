@@ -7,13 +7,14 @@
     tools:context="cry.who.boy.tap_recordatorios.Add_New_Reminder"
     android:paddingTop="0dp">
 
+    //Toolbar
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar">
 
     </include>
 
-
+    //EditTexts
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="392dp"
@@ -102,6 +103,7 @@
         </LinearLayout>
     </ScrollView>
 
+    //Botón OK
     <LinearLayout
         android:id="@+id/ll_botones"
         android:layout_width="368dp"
@@ -140,6 +142,7 @@
             tools:layout_editor_absoluteX="223dp" />
     </LinearLayout>
 
+    //Botones Fecha y Hora, Spinner
     <LinearLayout
         android:id="@+id/llPadre"
         android:layout_width="0dp"

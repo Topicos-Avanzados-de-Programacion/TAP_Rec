@@ -43,6 +43,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         toolbar = (Toolbar) findViewById(R.id.toolbar);//Conectamos el Layout al objeto Toolbar
         setSupportActionBar(toolbar);//Configuración de la barra de herramientas (toolbar)
         // como la Barra de Acciones (ActionBar) con la llamada de setSupportActionBar()
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Botones
         btn_cancelar = (Button) findViewById(R.id.btn_cancel);
@@ -173,7 +174,9 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_help) {
+            Intent i = new Intent(Add_New_Reminder.this, activity_Help.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
