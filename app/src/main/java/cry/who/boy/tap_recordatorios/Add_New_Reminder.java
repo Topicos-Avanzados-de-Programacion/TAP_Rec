@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
+    private Toolbar toolbar; //Declarar el Toolbar
     private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
     private EditText et_fecha, et_hora, et_Titulo, et_Desc;
     private int dia, mes, anio, hora, minutos;
@@ -29,21 +31,30 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
     //
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__new__reminder);
 
+        //Toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);//Conectamos el Layout al objeto Toolbar
+        setSupportActionBar(toolbar);//Configuración de la barra de herramientas (toolbar)
+        // como la Barra de Acciones (ActionBar) con la llamada de setSupportActionBar()
+
+        //Botones
         btn_cancelar = (Button) findViewById(R.id.btn_cancel);
         btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_fecha = (Button) findViewById(R.id.btn_fecha);
         btn_hora = (Button) findViewById(R.id.btn_hora);
+        //Edit Texts
         et_fecha = (EditText) findViewById(R.id.et_fecha);
         et_hora = (EditText) findViewById(R.id.et_hora);
         et_Titulo = (EditText) findViewById(R.id.et_title);
         et_Desc = (EditText) findViewById(R.id.et_text);
         btn_hora.setOnClickListener(this);
 
+        //Base de Datos
         myDb = new DatabaseHelper(this);
 
         //Spinner Importancia
@@ -51,6 +62,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Importancia, android.R.layout.simple_spinner_item);
         Importancia.setAdapter(adapter);
 
+        //dia, mes y anio tienen ahora el día actual del sistema
         Calendar c = Calendar.getInstance();
         dia= c.get(Calendar.DAY_OF_MONTH);
         mes= c.get(Calendar.MONTH);
@@ -149,6 +161,5 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
 
         }
     }
-
     
 }
