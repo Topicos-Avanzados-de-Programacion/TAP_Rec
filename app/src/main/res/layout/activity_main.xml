@@ -8,8 +8,7 @@
     tools:context="cry.who.boy.tap_recordatorios.MainActivity">
 
     <include android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-    />
+        layout="@layout/toolbar" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
