@@ -1,6 +1,7 @@
 package cry.who.boy.tap_recordatorios;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,11 +40,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarLista(){
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 1","20/04/17","10:42 p.m.","Este es un recordatorio"));
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 2","20/04/17","10:42 p.m.","Este es un recordatorio"));
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 3","20/04/17","10:42 p.m.","Este es un recordatorio"));
-        arrayRec.add(new Rec(R.mipmap.ic_launcher,"recordatorio 4","20/04/17","10:42 p.m.","Este es un recordatorio"));
-
+        Cursor res=myDb.getAllData();
+        if (res.getCount()==0){
+            return;
+        }
+        while(res.moveToNext()){
+            arrayRec.add(new Rec(res.getInt(4),res.getString(0),res.getString(1),res.getString(2),res.getString(3)));
+        }
+        
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
     }
