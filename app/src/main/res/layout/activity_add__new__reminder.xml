@@ -120,6 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="119dp"
+            android:longClickable="false"
             android:text="Cancelar"
             android:textAlignment="center"
             android:textSize="15sp"

@@ -44,6 +44,16 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);//Configuración de la barra de herramientas (toolbar)
         // como la Barra de Acciones (ActionBar) con la llamada de setSupportActionBar()
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.atras_blanco));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View atras) {
+                Intent Atras=new Intent(Add_New_Reminder.this, MainActivity.class);
+                startActivity(Atras);
+                finish();
+            }
+        });
 
         //Botones
         btn_cancelar = (Button) findViewById(R.id.btn_cancel);
@@ -84,6 +94,8 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             }
         };
     }
+
+
 
     //Metodos para Fecha
     public void mostrarFecha(){
