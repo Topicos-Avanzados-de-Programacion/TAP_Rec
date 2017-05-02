@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         while(res.moveToNext()){
             arrayRec.add(new Rec(res.getInt(4),res.getString(0),res.getString(1),res.getString(2),res.getString(3)));
         }
-        
+
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
     }
