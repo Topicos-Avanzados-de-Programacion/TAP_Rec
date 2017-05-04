@@ -136,37 +136,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="serif"
-                android:text="@string/Alta"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:typeface="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="serif"
-                android:text="@string/Normal"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:typeface="normal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="serif"
-                android:text="@string/Baja"
+                android:text="@string/Prioridad"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"

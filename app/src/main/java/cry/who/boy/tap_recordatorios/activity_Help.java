@@ -1,8 +1,10 @@
 package cry.who.boy.tap_recordatorios;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 public class activity_Help extends AppCompatActivity {
     private Toolbar toolbar;
@@ -21,5 +23,17 @@ public class activity_Help extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.title_activity__help);
         //Se pone un subtítulo
         toolbar.setSubtitle("Más inf. al correo colima_97@hotmail.com");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.volver_blanco));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View atras) {
+                Intent Atras=new Intent(activity_Help.this, Add_New_Reminder.class);
+                startActivity(Atras);
+                finish();
+            }
+        });
+
     }
 }
