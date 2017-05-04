@@ -29,11 +29,17 @@ public class activity_Help extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View atras) {
-                Intent Atras=new Intent(activity_Help.this, Add_New_Reminder.class);
-                startActivity(Atras);
+                onBackPressed();
                 finish();
             }
         });
+    }
 
+    //Este método nos permite usar el botón atrás
+    // que ya está presente en Android en la parte baja
+    // de nuestra aplicación
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
