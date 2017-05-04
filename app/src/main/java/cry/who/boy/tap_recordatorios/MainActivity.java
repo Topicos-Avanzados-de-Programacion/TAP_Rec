@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
         lista=(ListView)(findViewById(R.id.Lista));
         cargarLista();
+        /*lista.setOnLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
+                final int posicion=1;
+
+            }
+        });*/
     }
 
     private void cargarLista(){
@@ -56,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         Intent Buscar=new Intent(this, Add_New_Reminder.class);
         startActivity(Buscar);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
