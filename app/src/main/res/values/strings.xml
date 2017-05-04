@@ -9,14 +9,11 @@
     <string name="ayuda_2">Si usted no pone ninguna hora,
         el recordatorio se mostrará por el resto del día.</string>
 
-    <string name="ayuda_3">El nivel de importancia, aunque en un principio se muestra como:
+    <string name="ayuda_3">El nivel de prioridad, aunque en un principio se muestra como:
         Alto, Normal, Bajo; al final, será representado con colores,
         como se muestra en la imagen de abajo.</string>
 
-    <string name="ayuda_4">¿Para qué sirve el nivel de importancia en mi recordatorio?</string>
-    <string name="Alta">Alta: La notificación no se puede quitar, a menos que la tarea sea finalizada.</string>
-    <string name="Normal">Normal: La notificación se puede quitar,
-        pero aparecerá de nuevo si la tarea no se finaliza.</string>
-    <string name="Baja">Baja: La notificación se puede quitar,
-        pero ya no aparecerá una segunda vez.</string>
+    <string name="ayuda_4">¿Para qué sirve el nivel de prioridad en mi recordatorio?</string>
+    <string name="Prioridad">Entre más alta sea la prioridad,
+        se mostrará más arriba de la barra de las notificaciones.</string>
 </resources>

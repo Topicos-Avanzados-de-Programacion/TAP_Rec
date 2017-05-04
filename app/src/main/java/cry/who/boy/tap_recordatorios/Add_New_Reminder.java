@@ -45,7 +45,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         // como la Barra de Acciones (ActionBar) con la llamada de setSupportActionBar()
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.atras_blanco));
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.volver_blanco));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View atras) {
