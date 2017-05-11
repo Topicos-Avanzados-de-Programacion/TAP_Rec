@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Add_New_Reminder" />
-        <activity android:name=".activity_Help"></activity>
+        <activity android:name=".activity_Help" />
+        <activity android:name=".Editar"></activity>
     </application>
 
 </manifest>
