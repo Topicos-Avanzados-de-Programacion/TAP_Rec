@@ -38,15 +38,38 @@ public class MainActivity extends AppCompatActivity {
 
         lista=(ListView)(findViewById(R.id.Lista));
         cargarLista();
-        /*lista.setOnLongClickListener(new AdapterView.OnItemLongClickListener(){
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
-                final int posicion=1;
-
+                Rec obj=arrayRec.get(position);
+                String importancia="";
+                switch (obj.getColor()){
+                    case R.drawable.ic_rojo:
+                        importancia="Alta";
+                        break;
+                    case R.drawable.ic_amarillo:
+                        importancia="Normal";
+                        break;
+                    case R.drawable.ic_verde:
+                        importancia="Baja";
+                        break;
+                }
+                Intent editar=new Intent(MainActivity.this,Add_New_Reminder.class);
+                editar.putExtra("titulo",obj.getTitulo());
+                editar.putExtra("fecha",obj.getFecha());
+                editar.putExtra("hora",obj.getHora());
+                editar.putExtra("descripcion",obj.getDescripcion());
+                editar.putExtra("importancia",importancia);
+                startActivity(editar);
+            return true;
             }
-        });*/
+        });
     }
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        Rec elemento = (Rec) adapter.getItem(position);
+        Intent intent;
 
+    }
     private void cargarLista(){
         Cursor res=myDb.getAllData();
         if (res.getCount()==0){
@@ -64,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
         Intent Buscar=new Intent(this, Add_New_Reminder.class);
         startActivity(Buscar);
     }
-
 
 
     @Override
