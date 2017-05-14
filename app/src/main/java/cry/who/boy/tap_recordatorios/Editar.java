@@ -20,6 +20,8 @@ public class Editar extends AppCompatActivity {
         // como la Barra de Acciones (ActionBar) con la llamada de setSupportActionBar()
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Así se pone el título que ya había creado en Values/strings llamado title_activity_help
+        getSupportActionBar().setTitle(R.string.title_activity_editar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.volver_blanco));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

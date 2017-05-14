@@ -2,7 +2,8 @@
     <string name="app_name">Agregar Recordatorio</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity__help">Ayuda</string>
-
+    <string name="title_activity_editar">Editar Recordatorio</string>
+    
     <string name="ayuda_1">Si usted presiona la flecha que abajo se muestra,
         saldrá de la ventana Agregar Recordatorio y los datos no se guardarán.</string>
 

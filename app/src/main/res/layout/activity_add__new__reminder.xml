@@ -122,6 +122,7 @@
             android:layout_marginRight="119dp"
             android:background="@drawable/boton_accion"
             android:longClickable="false"
+            android:onClick="Edit"
             android:text="Cancelar"
             android:textAlignment="center"
             android:textSize="15sp"

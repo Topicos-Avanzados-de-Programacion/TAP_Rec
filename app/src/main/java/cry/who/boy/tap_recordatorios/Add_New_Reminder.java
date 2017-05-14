@@ -95,8 +95,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         };
     }
 
-
-
     //Metodos para Fecha
     public void mostrarFecha(){
         et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
@@ -175,6 +173,12 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
 
 
         }
+    }
+
+    //Método provisional
+    public void Edit(View edit){
+        Intent intent = new Intent(Add_New_Reminder.this, Editar.class);
+        startActivity(intent);
     }
 
     @Override
