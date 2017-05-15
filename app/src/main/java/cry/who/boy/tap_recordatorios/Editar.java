@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-public class Editar extends AppCompatActivity {
+public class Editar extends AppCompatActivity implements View.OnClickListener{
     private Toolbar toolbar; //Declarar el Toolbar
     private Button btn_fecha_2, btn_hora_2, btn_cancelar_2, btn_ok_2;
     private TextView tv_fecha_2, tv_hora_2;
@@ -28,6 +28,8 @@ public class Editar extends AppCompatActivity {
     Spinner Importancia;
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,7 @@ public class Editar extends AppCompatActivity {
             }
         });
 
-       /* //Botones
+       //Botones
         btn_cancelar_2 = (Button) findViewById(R.id.btn_cancel_2);
         btn_ok_2 = (Button) findViewById(R.id.btn_ok_2);
         btn_fecha_2 = (Button) findViewById(R.id.btn_fecha_2);
@@ -61,11 +63,10 @@ public class Editar extends AppCompatActivity {
         //Edit Texts
         et_Titulo_2 = (EditText) findViewById(R.id.et_title_2);
         et_Desc_2 = (EditText) findViewById(R.id.et_text_2);//Descripción
-        btn_hora_2.setOnClickListener((View.OnClickListener) this);
+        btn_hora_2.setOnClickListener(this);
         //TextView
         tv_fecha_2 = (TextView) findViewById(R.id.tv_fecha_2);
-        tv_hora_2 = (TextView) findViewById(R.id.tv_hora_2);*/
-
+        tv_hora_2 = (TextView) findViewById(R.id.tv_hora_2);
         //Spinner Importancia
         Importancia = (Spinner) findViewById(R.id.spinner_2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Importancia, android.R.layout.simple_spinner_item);

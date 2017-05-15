@@ -25,8 +25,8 @@ import android.widget.Toast;
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar; //Declarar el Toolbar
     private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
-    //private TextView et_fecha, et_hora;
-    private EditText et_fecha, et_hora, et_Titulo, et_Desc;
+    private TextView tv_fecha, tv_hora;
+    private EditText et_Titulo, et_Desc;
     private int dia, mes, anio, hora, minutos;
     private static final int TIPO_DIALOGO = 0;
     private static DatePickerDialog.OnDateSetListener oyenteSelectorFecha;
@@ -63,11 +63,12 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         btn_fecha = (Button) findViewById(R.id.btn_fecha);
         btn_hora = (Button) findViewById(R.id.btn_hora);
         //Edit Texts
-        et_fecha = (EditText) findViewById(R.id.et_fecha);
-        et_hora = (EditText) findViewById(R.id.et_hora);
         et_Titulo = (EditText) findViewById(R.id.et_title);
         et_Desc = (EditText) findViewById(R.id.et_text);//Descripción
         btn_hora.setOnClickListener(this);
+        //TextView
+        tv_fecha = (TextView) findViewById(R.id.tv_fecha);
+        tv_hora = (TextView) findViewById(R.id.tv_hora);
 
         //Base de Datos
         myDb = new DatabaseHelper(this);
@@ -99,7 +100,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
 
     //Metodos para Fecha
     public void mostrarFecha(){
-        et_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
+        tv_fecha.setText(dia+"-"+(mes+1)+"-"+anio);
     }
 
     @Override
@@ -125,7 +126,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 hora=hourOfDay;
                 minutos=minute;
-                et_hora.setText(hora+":"+minutos);
+                tv_hora.setText(hora+":"+minutos);
             }
         },hora,minutos,false);
         timePickerDialog.show();
@@ -134,8 +135,8 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     public void MandarDatos(View vista){
 
         String Titulo = et_Titulo.getText().toString();
-        String Fecha = et_fecha.getText().toString();
-        String Hora = et_hora.getText().toString();
+        String Fecha = tv_fecha.getText().toString();// <---
+        String Hora = tv_hora.getText().toString();// <---
         String Desc = et_Desc.getText().toString();
         String Import =Importancia.getSelectedItem().toString();
         int Imagen = 0;
