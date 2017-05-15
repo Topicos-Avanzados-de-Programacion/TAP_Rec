@@ -18,12 +18,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar; //Declarar el Toolbar
     private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
+    //private TextView et_fecha, et_hora;
     private EditText et_fecha, et_hora, et_Titulo, et_Desc;
     private int dia, mes, anio, hora, minutos;
     private static final int TIPO_DIALOGO = 0;
@@ -64,7 +66,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         et_fecha = (EditText) findViewById(R.id.et_fecha);
         et_hora = (EditText) findViewById(R.id.et_hora);
         et_Titulo = (EditText) findViewById(R.id.et_title);
-        et_Desc = (EditText) findViewById(R.id.et_text);
+        et_Desc = (EditText) findViewById(R.id.et_text);//Descripción
         btn_hora.setOnClickListener(this);
 
         //Base de Datos
