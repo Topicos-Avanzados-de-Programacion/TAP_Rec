@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +38,32 @@ public class MainActivity extends AppCompatActivity {
 
         lista=(ListView)(findViewById(R.id.Lista));
         cargarLista();
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
+                Rec obj=arrayRec.get(position);
+                String importancia="";
+                switch (obj.getColor()){
+                    case R.drawable.ic_rojo:
+                        importancia="Alta";
+                        break;
+                    case R.drawable.ic_amarillo:
+                        importancia="Normal";
+                        break;
+                    case R.drawable.ic_verde:
+                        importancia="Baja";
+                        break;
+                }
+                Intent editar=new Intent(MainActivity.this,Editar.class);
+                editar.putExtra("titulo",obj.getTitulo());
+                editar.putExtra("fecha",obj.getFecha());
+                editar.putExtra("hora",obj.getHora());
+                editar.putExtra("descripcion",obj.getDescripcion());
+                editar.putExtra("importancia",importancia);
+                startActivity(editar);
+                return true;
+            }
+        });
     }
 
     private void cargarLista(){

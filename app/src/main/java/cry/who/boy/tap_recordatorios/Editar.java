@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class Editar extends AppCompatActivity implements View.OnClickListener{
     private Toolbar toolbar; //Declarar el Toolbar
@@ -28,6 +29,7 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
     Spinner Importancia;
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
+    private DatabaseHelper myDb;
 
 
     @Override
@@ -71,7 +73,7 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         Importancia = (Spinner) findViewById(R.id.spinner_2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.Importancia, android.R.layout.simple_spinner_item);
         Importancia.setAdapter(adapter);
-
+        myDb = new DatabaseHelper(this);
         //dia, mes y anio tienen ahora el día actual del sistema
         Calendar c = Calendar.getInstance();
         dia= c.get(Calendar.DAY_OF_MONTH);
@@ -90,7 +92,22 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
                 mostrarFecha();
             }
         };
+        Intent intent=getIntent();
+        Bundle extras=intent.getExtras();
+        if (extras!=null){
+            String titulo=extras.getString("titulo");
+            String fecha=extras.getString("fecha");
+            String hora=extras.getString("hora");
+            String descripcion=extras.getString("descripcion");
+            String importancia=extras.getString("importancia");
 
+            et_Titulo_2.setText(titulo);
+            tv_fecha_2.setText(fecha);
+            tv_hora_2.setText(hora);
+            et_Desc_2.setText(descripcion);
+            //Importancia.  setSelection o setId
+
+        }
     }
 
     //Metodos para Fecha
@@ -126,5 +143,53 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         },hora,minutos,false);
         timePickerDialog.show();
     }
+    public void Cancelar(View view){
+        Intent intent = new Intent(Editar.this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void MandarDatos(View vista){
 
+        String Titulo = et_Titulo_2.getText().toString();
+        String Fecha = tv_fecha_2.getText().toString();// <---
+        String Hora = tv_hora_2.getText().toString();// <---
+        String Desc = et_Desc_2.getText().toString();
+        String Import =Importancia.getSelectedItem().toString();
+        int Imagen = 0;
+        switch (Import){
+            case "Alta":
+                Imagen=R.drawable.ic_rojo;
+                break;
+            case "Normal":
+                Imagen=R.drawable.ic_amarillo;
+                break;
+            case "Baja":
+                Imagen=R.drawable.ic_verde;
+                break;
+        }
+        if(Hora == null
+                || Hora.equals("")
+                || Hora.trim().length()==0){
+            Hora= "Todo el día";
+        }
+
+        if(Titulo == null || Titulo.equals("") || Titulo.trim().length()==0 ||
+                Fecha == null || Fecha.equals("") || Fecha.trim().length()==0){
+            Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
+            msn.show();
+        }else {
+            Rec rec=new Rec(Imagen,Titulo, Fecha, Hora, Desc);
+            boolean veri=myDb.insertData(rec);
+            if (veri){
+                Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+                msn.show();
+                Intent intent = new Intent(Editar.this, MainActivity.class);
+                startActivity(intent);
+            }else{
+                Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
+                msn.show();
+            }
+
+
+        }
+    }
 }
