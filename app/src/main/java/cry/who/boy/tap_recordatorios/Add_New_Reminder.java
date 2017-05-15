@@ -32,7 +32,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     private DatabaseHelper myDb;
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
-    //
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
