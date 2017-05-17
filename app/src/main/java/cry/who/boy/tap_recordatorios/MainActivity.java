@@ -42,16 +42,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
                 Rec obj=arrayRec.get(position);
-                String importancia="";
+                int importancia=-1;
                 switch (obj.getColor()){
                     case R.drawable.ic_rojo:
-                        importancia="Alta";
+                        importancia=0;
                         break;
                     case R.drawable.ic_amarillo:
-                        importancia="Normal";
+                        importancia=1;
                         break;
                     case R.drawable.ic_verde:
-                        importancia="Baja";
+                        importancia=2;
                         break;
                 }
                 Intent editar=new Intent(MainActivity.this,Editar.class);

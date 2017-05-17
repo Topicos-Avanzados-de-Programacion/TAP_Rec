@@ -99,13 +99,13 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
             String fecha=extras.getString("fecha");
             String hora=extras.getString("hora");
             String descripcion=extras.getString("descripcion");
-            String importancia=extras.getString("importancia");
+            int importancia=extras.getInt("importancia");
 
             et_Titulo_2.setText(titulo);
             tv_fecha_2.setText(fecha);
             tv_hora_2.setText(hora);
             et_Desc_2.setText(descripcion);
-            //Importancia.  setSelection o setId
+            Importancia.setSelection(importancia);
 
         }
     }
