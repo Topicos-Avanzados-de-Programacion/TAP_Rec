@@ -42,24 +42,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
                 Rec obj=arrayRec.get(position);
-                int importancia=-1;
-                switch (obj.getColor()){
-                    case R.drawable.ic_rojo:
-                        importancia=0;
-                        break;
-                    case R.drawable.ic_amarillo:
-                        importancia=1;
-                        break;
-                    case R.drawable.ic_verde:
-                        importancia=2;
-                        break;
-                }
+
                 Intent editar=new Intent(MainActivity.this,Editar.class);
                 editar.putExtra("titulo",obj.getTitulo());
                 editar.putExtra("fecha",obj.getFecha());
                 editar.putExtra("hora",obj.getHora());
                 editar.putExtra("descripcion",obj.getDescripcion());
-                editar.putExtra("importancia",importancia);
+                editar.putExtra("importancia",obj.getImportancia());
                 startActivity(editar);
                 return true;
             }
@@ -72,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         while(res.moveToNext()){
-            arrayRec.add(new Rec(res.getInt(4),res.getString(0),res.getString(1),res.getString(2),res.getString(3)));
+            arrayRec.add(new Rec(res.getString(0),res.getString(1),res.getString(2),res.getString(3),res.getInt(4)));
         }
-
+        
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
     }

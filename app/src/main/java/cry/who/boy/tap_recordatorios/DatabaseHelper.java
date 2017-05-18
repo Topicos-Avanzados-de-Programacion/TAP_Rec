@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "Recordatorios.db";
+    public static final String DATABASE_NAME = "Rec.db";
     public static final String TABLE_NAME = "rec_table";
     public static final String COL_1 ="TITULO";
     public static final String COL_2 ="FECHA";
@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2,rec.getFecha());
         contentValues.put(COL_3, rec.getHora());
         contentValues.put(COL_4, rec.getDescripcion());
-        contentValues.put(COL_5, rec.getColor());
+        contentValues.put(COL_5, rec.getImportancia());
         long veri=db.insert(TABLE_NAME, null, contentValues);
         db.close();
         if (veri==-1){
@@ -57,14 +57,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData(String titulo,String fecha,String hora,String descripcion,int color){
+    public boolean updateData(String titulo,String fecha,String hora,String descripcion,int importancia){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1,titulo);
         contentValues.put(COL_2,fecha);
         contentValues.put(COL_3, hora);
         contentValues.put(COL_4, descripcion);
-        contentValues.put(COL_5, color);
+        contentValues.put(COL_5, importancia);
         db.update(TABLE_NAME,contentValues,COL_1+" = ?",new String[]{titulo});
         return true;
     }
