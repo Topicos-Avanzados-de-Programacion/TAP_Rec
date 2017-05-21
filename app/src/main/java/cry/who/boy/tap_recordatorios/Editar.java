@@ -20,6 +20,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Editar extends AppCompatActivity implements View.OnClickListener{
     private Toolbar toolbar; //Declarar el Toolbar
     private Button btn_fecha_2, btn_hora_2, btn_ok_2;
@@ -140,7 +144,11 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 hora=hourOfDay;
                 minutos=minute;
-                tv_hora_2.setText(hora+":"+minutos);
+                if(minutos<10){
+                    tv_hora_2.setText(hora+":0"+minutos);
+                }else{
+                    tv_hora_2.setText(hora+":"+minutos);
+                }
             }
         },hora,minutos,false);
         timePickerDialog.show();
@@ -153,6 +161,21 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         String Hora = tv_hora_2.getText().toString();// <---
         String Desc = et_Desc_2.getText().toString();
         int Import =Importancia.getSelectedItemPosition();
+
+        String Fech_act = d_act+"-"+(m_act+1)+"-"+a_act;
+        java.text.DateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+        java.text.DateFormat dft=new SimpleDateFormat("hh-mm");
+
+        Date startDate = null;
+        Date secondDate = null;
+
+        try{
+            startDate = df.parse(Fecha);
+            secondDate = df.parse(Fech_act);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+
         if(Hora == null
                 || Hora.equals("")
                 || Hora.trim().length()==0){
@@ -164,20 +187,20 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
             Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
             msn.show();
         }else {
-            Rec rec=new Rec(Titulo, Fecha, Hora, Desc, Import);
-            myDb.deleteData(tituloRec);
-            boolean veri=myDb.insertData(rec);
-            if (veri){
-                Toast msn = Toast.makeText(getApplicationContext(), "Modificado Satisfactoriamente", Toast.LENGTH_SHORT);
+            if(startDate.before(secondDate)){
+                Toast msn = Toast.makeText(getApplicationContext(), "No ponga una fecha anterior a la del día de Hoy", Toast.LENGTH_SHORT);
                 msn.show();
-                Intent intent = new Intent(Editar.this, MainActivity.class);
-                startActivity(intent);
             }else{
-                Toast msn = Toast.makeText(getApplicationContext(), "Nel we", Toast.LENGTH_SHORT);
-                msn.show();
+                Rec rec = new Rec(Titulo, Fecha, Hora, Desc, Import);
+                myDb.deleteData(tituloRec);
+                boolean veri = myDb.insertData(rec);
+                if (veri) {
+                    Toast msn = Toast.makeText(getApplicationContext(), "Modificado Satisfactoriamente", Toast.LENGTH_SHORT);
+                    msn.show();
+                    Intent intent = new Intent(Editar.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
-
-
         }
     }
 

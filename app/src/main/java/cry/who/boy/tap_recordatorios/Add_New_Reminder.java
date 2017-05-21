@@ -130,7 +130,11 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 hora=hourOfDay;
                 minutos=minute;
-                tv_hora.setText(hora+":"+minutos);
+                if(minutos<10){
+                    tv_hora.setText(hora+":0"+minutos);
+                }else{
+                    tv_hora.setText(hora+":"+minutos);
+                }
             }
         },hora,minutos,false);
         timePickerDialog.show();
