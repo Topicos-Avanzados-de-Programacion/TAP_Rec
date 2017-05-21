@@ -1,10 +1,12 @@
 package cry.who.boy.tap_recordatorios;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by Luis J. Ortiz on 20/04/2017.
  */
 
-public class Rec {
+public class Rec implements Comparable<Rec>{
 
     private String titulo;
     private String fecha;
@@ -58,5 +60,12 @@ public class Rec {
 
     public void setImportancia(int importancia) {
         this.importancia = importancia;
+    }
+
+    @Override
+    public int compareTo(Rec o) {
+        String a=new String(String.valueOf(this.getImportancia()));
+        String b=new String(String.valueOf(o.getImportancia()));
+        return a.compareTo(b);
     }
 }

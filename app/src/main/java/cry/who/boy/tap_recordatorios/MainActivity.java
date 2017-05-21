@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb;
@@ -68,37 +70,8 @@ public class MainActivity extends AppCompatActivity {
         while(res.moveToNext()){
             arrayRec.add(new Rec(res.getString(0),res.getString(1),res.getString(2),res.getString(3),res.getInt(4)));
         }
-        while (!arrayRec.isEmpty()){
-            switch (arrayRec.get(0).getImportancia()){
-                case 0:
-                    arrayRec0.add(arrayRec.get(0));
-                    arrayRec.remove(0);
-                    break;
-                case 1:
-                    arrayRec1.add(arrayRec.get(0));
-                    arrayRec.remove(0);
-                    break;
-                case 2:
-                    arrayRec2.add(arrayRec.get(0));
-                    arrayRec.remove(0);
-                    break;
-            }
-
-        }
-        if (arrayRec.isEmpty()){
-            while(!arrayRec0.isEmpty()){
-                arrayRec.add(arrayRec0.get(0));
-                arrayRec0.remove(0);
-            }
-            while(!arrayRec1.isEmpty()){
-                arrayRec.add(arrayRec0.get(0));
-                arrayRec1.remove(0);
-            }
-            while(!arrayRec2.isEmpty()){
-                arrayRec.add(arrayRec0.get(0));
-                arrayRec2.remove(0);
-            }
-        }
+        Collections.sort(arrayRec);
+        
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
 
