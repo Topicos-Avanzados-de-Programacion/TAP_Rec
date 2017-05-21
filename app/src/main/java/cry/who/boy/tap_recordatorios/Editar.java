@@ -188,7 +188,7 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
             msn.show();
         }else {
             if(startDate.before(secondDate)){
-                Toast msn = Toast.makeText(getApplicationContext(), "No ponga una fecha anterior a la del día de Hoy", Toast.LENGTH_SHORT);
+                Toast msn = Toast.makeText(getApplicationContext(), "No ponga una Fecha anterior a la del día de Hoy", Toast.LENGTH_SHORT);
                 msn.show();
             }else{
                 Rec rec = new Rec(Titulo, Fecha, Hora, Desc, Import);
