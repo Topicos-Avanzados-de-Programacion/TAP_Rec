@@ -29,7 +29,7 @@ import java.util.Date;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar; //Declarar el Toolbar
-    private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
+    private Button btn_fecha, btn_hora, btn_ok;
     private TextView tv_fecha, tv_hora;
     private EditText et_Titulo, et_Desc;
     private int dia, mes, anio, hora, minutos;
@@ -63,7 +63,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         });
 
         //Botones
-        btn_cancelar = (Button) findViewById(R.id.btn_cancel);
         btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_fecha = (Button) findViewById(R.id.btn_fecha);
         btn_hora = (Button) findViewById(R.id.btn_hora);
@@ -131,7 +130,11 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 hora=hourOfDay;
                 minutos=minute;
-                tv_hora.setText(hora+":"+minutos);
+                if(minutos<10){
+                    tv_hora.setText(hora+":0"+minutos);
+                }else{
+                    tv_hora.setText(hora+":"+minutos);
+                }
             }
         },hora,minutos,false);
         timePickerDialog.show();
@@ -170,7 +173,7 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         }else {
             
             if(startDate.before(secondDate)){
-                Toast msn = Toast.makeText(getApplicationContext(), "No ponga una fecha anterior a la del día de Hoy", Toast.LENGTH_SHORT);
+                Toast msn = Toast.makeText(getApplicationContext(), "No ponga una Fecha anterior a la del día de Hoy", Toast.LENGTH_SHORT);
                 msn.show();
             }else{
                 Rec rec=new Rec(Titulo, Fecha, Hora, Desc, Import);
@@ -185,18 +188,14 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    //Método provisional
-    public void Edit(View edit){
-        Intent intent = new Intent(Add_New_Reminder.this, Editar.class);
-        startActivity(intent);
-    }
-
+    //Métodos para crear las Opciones del Toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    //Este método es para saber qué opción tocó el usuario
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
