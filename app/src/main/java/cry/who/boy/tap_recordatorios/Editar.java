@@ -8,6 +8,8 @@ import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -144,10 +146,12 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         },hora,minutos,false);
         timePickerDialog.show();
     }
+    //Método provisional
     public void Cancelar(View view){
         Intent intent = new Intent(Editar.this, MainActivity.class);
         startActivity(intent);
     }
+
     public void MandarDatos(View vista){
 
         String Titulo = et_Titulo_2.getText().toString();
@@ -181,5 +185,26 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
 
 
         }
+    }
+
+    //Este método es para saber qué opción tocó el usuario
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_borrar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_borrar){
+            myDb.deleteData(tituloRec);
+            Intent i = new Intent(Editar.this, MainActivity.class);
+            startActivity(i);
+            Toast msn = Toast.makeText(getApplicationContext(), "Eliminado Satisfactoriamente", Toast.LENGTH_SHORT);
+            msn.show();
+            return true;
+    }
+        return super.onOptionsItemSelected(item);
     }
 }

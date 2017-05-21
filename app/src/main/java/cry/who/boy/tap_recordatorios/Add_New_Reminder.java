@@ -191,12 +191,14 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         startActivity(intent);
     }
 
+    //Métodos para crear las Opciones del Toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    //Este método es para saber qué opción tocó el usuario
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
