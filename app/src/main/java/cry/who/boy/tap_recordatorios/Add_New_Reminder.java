@@ -29,7 +29,7 @@ import java.util.Date;
 
 public class Add_New_Reminder extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar; //Declarar el Toolbar
-    private Button btn_fecha, btn_hora, btn_cancelar, btn_ok;
+    private Button btn_fecha, btn_hora, btn_ok;
     private TextView tv_fecha, tv_hora;
     private EditText et_Titulo, et_Desc;
     private int dia, mes, anio, hora, minutos;
@@ -63,7 +63,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         });
 
         //Botones
-        btn_cancelar = (Button) findViewById(R.id.btn_cancel);
         btn_ok = (Button) findViewById(R.id.btn_ok);
         btn_fecha = (Button) findViewById(R.id.btn_fecha);
         btn_hora = (Button) findViewById(R.id.btn_hora);
@@ -183,12 +182,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
                 }
             }
         }
-    }
-
-    //Método provisional
-    public void Edit(View edit){
-        Intent intent = new Intent(Add_New_Reminder.this, Editar.class);
-        startActivity(intent);
     }
 
     //Métodos para crear las Opciones del Toolbar

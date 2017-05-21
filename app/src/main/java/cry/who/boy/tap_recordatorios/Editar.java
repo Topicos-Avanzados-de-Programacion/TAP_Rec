@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class Editar extends AppCompatActivity implements View.OnClickListener{
     private Toolbar toolbar; //Declarar el Toolbar
-    private Button btn_fecha_2, btn_hora_2, btn_cancelar_2, btn_ok_2;
+    private Button btn_fecha_2, btn_hora_2, btn_ok_2;
     private TextView tv_fecha_2, tv_hora_2;
     private EditText et_Titulo_2, et_Desc_2;
     private int dia, mes, anio, hora, minutos;
@@ -60,7 +60,6 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         });
 
        //Botones
-        btn_cancelar_2 = (Button) findViewById(R.id.btn_cancel_2);
         btn_ok_2 = (Button) findViewById(R.id.btn_ok_2);
         btn_fecha_2 = (Button) findViewById(R.id.btn_fecha_2);
         btn_hora_2 = (Button) findViewById(R.id.btn_hora_2);
@@ -145,11 +144,6 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
             }
         },hora,minutos,false);
         timePickerDialog.show();
-    }
-    //Método provisional
-    public void Cancelar(View view){
-        Intent intent = new Intent(Editar.this, MainActivity.class);
-        startActivity(intent);
     }
 
     public void MandarDatos(View vista){
