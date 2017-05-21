@@ -49,8 +49,19 @@ public class ListViewAdapter extends BaseAdapter {
         TextView fecha=(TextView)(vistaRec.findViewById(R.id.loFecha));
         TextView hora=(TextView)(vistaRec.findViewById(R.id.loHora));
         TextView descripcion=(TextView)(vistaRec.findViewById(R.id.loDescripcion));
-
-        imagen.setImageResource(arrayRec.get(position).getColor());
+        int color=0;
+        switch (arrayRec.get(position).getImportancia()){
+            case 0:
+                color=R.drawable.ic_rojo;
+                break;
+            case 1:
+                color=R.drawable.ic_amarillo;
+                break;
+            case 2:
+                color=R.drawable.ic_verde;
+                break;
+        }
+        imagen.setImageResource(color);
         titulo.setText(arrayRec.get(position).getTitulo());
         fecha.setText(arrayRec.get(position).getFecha());
         hora.setText(arrayRec.get(position).getHora());

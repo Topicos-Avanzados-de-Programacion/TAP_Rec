@@ -5,26 +5,19 @@ package cry.who.boy.tap_recordatorios;
  */
 
 public class Rec {
-    private int color;
+
     private String titulo;
     private String fecha;
     private String hora;
     private String descripcion;
+    private int importancia;
 
-    public Rec(int color, String titulo, String fecha, String hora, String descripcion) {
-        this.color = color;
+    public Rec(String titulo, String fecha, String hora, String descripcion, int importancia) {
         this.titulo = titulo;
         this.fecha = fecha;
         this.hora = hora;
         this.descripcion = descripcion;
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
+        this.importancia = importancia;
     }
 
     public String getTitulo() {
@@ -57,5 +50,13 @@ public class Rec {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getImportancia() {
+        return importancia;
+    }
+
+    public void setImportancia(int importancia) {
+        this.importancia = importancia;
     }
 }

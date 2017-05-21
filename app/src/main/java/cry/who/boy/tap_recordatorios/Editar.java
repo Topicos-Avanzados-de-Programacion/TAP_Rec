@@ -30,7 +30,7 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
     private DatabaseHelper myDb;
-
+    private String tituloRec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,17 +95,18 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         Intent intent=getIntent();
         Bundle extras=intent.getExtras();
         if (extras!=null){
-            String titulo=extras.getString("titulo");
+            tituloRec=extras.getString("titulo");
             String fecha=extras.getString("fecha");
             String hora=extras.getString("hora");
             String descripcion=extras.getString("descripcion");
             int importancia=extras.getInt("importancia");
 
-            et_Titulo_2.setText(titulo);
+            et_Titulo_2.setText(tituloRec);
             tv_fecha_2.setText(fecha);
             tv_hora_2.setText(hora);
             et_Desc_2.setText(descripcion);
             Importancia.setSelection(importancia);
+
 
         }
     }
@@ -153,19 +154,7 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
         String Fecha = tv_fecha_2.getText().toString();// <---
         String Hora = tv_hora_2.getText().toString();// <---
         String Desc = et_Desc_2.getText().toString();
-        String Import =Importancia.getSelectedItem().toString();
-        int Imagen = 0;
-        switch (Import){
-            case "Alta":
-                Imagen=R.drawable.ic_rojo;
-                break;
-            case "Normal":
-                Imagen=R.drawable.ic_amarillo;
-                break;
-            case "Baja":
-                Imagen=R.drawable.ic_verde;
-                break;
-        }
+        int Import =Importancia.getSelectedItemPosition();
         if(Hora == null
                 || Hora.equals("")
                 || Hora.trim().length()==0){
@@ -177,10 +166,11 @@ public class Editar extends AppCompatActivity implements View.OnClickListener{
             Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
             msn.show();
         }else {
-            Rec rec=new Rec(Imagen,Titulo, Fecha, Hora, Desc);
+            Rec rec=new Rec(Titulo, Fecha, Hora, Desc, Import);
+            myDb.deleteData(tituloRec);
             boolean veri=myDb.insertData(rec);
             if (veri){
-                Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
+                Toast msn = Toast.makeText(getApplicationContext(), "Modificado Satisfactoriamente", Toast.LENGTH_SHORT);
                 msn.show();
                 Intent intent = new Intent(Editar.this, MainActivity.class);
                 startActivity(intent);

@@ -143,7 +143,8 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
         String Fecha = tv_fecha.getText().toString();// <---
         String Hora = tv_hora.getText().toString();// <---
         String Desc = et_Desc.getText().toString();
-        String Import =Importancia.getSelectedItem().toString();
+        int Import =Importancia.getSelectedItemPosition();
+        
         String Fech_act = d_act+"-"+(m_act+1)+"-"+a_act;
         java.text.DateFormat df=new SimpleDateFormat("dd-MM-yyyy");
         Date startDate = null;
@@ -156,18 +157,6 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             e.printStackTrace();
         }
 
-        int Imagen = 0;
-        switch (Import){
-            case "Alta":
-                Imagen=R.drawable.ic_rojo;
-                break;
-            case "Normal":
-                Imagen=R.drawable.ic_amarillo;
-                break;
-            case "Baja":
-                Imagen=R.drawable.ic_verde;
-                break;
-        }
         if(Hora == null
                 || Hora.equals("")
                 || Hora.trim().length()==0){
@@ -179,19 +168,18 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
             Toast msn = Toast.makeText(getApplicationContext(), "No deje el Título o la Fecha vacío", Toast.LENGTH_SHORT);
             msn.show();
         }else {
+            
             if(startDate.before(secondDate)){
                 Toast msn = Toast.makeText(getApplicationContext(), "No ponga una fecha anterior a la del día de Hoy", Toast.LENGTH_SHORT);
                 msn.show();
             }else{
-                Rec rec=new Rec(Imagen,Titulo, Fecha, Hora, Desc);
+                Rec rec=new Rec(Titulo, Fecha, Hora, Desc, Import);
                 boolean veri=myDb.insertData(rec);
                 if (veri){
                     Toast msn = Toast.makeText(getApplicationContext(), "Guardado Satisfactoriamente", Toast.LENGTH_SHORT);
                     msn.show();
                     Intent intent = new Intent(Add_New_Reminder.this, MainActivity.class);
                     startActivity(intent);
-                }else{
-
                 }
             }
         }
