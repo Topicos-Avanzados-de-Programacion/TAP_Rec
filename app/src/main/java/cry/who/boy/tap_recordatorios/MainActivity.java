@@ -1,5 +1,6 @@
 package cry.who.boy.tap_recordatorios;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -20,8 +21,11 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     private ListView lista=null;
     ArrayList<Rec> arrayRec=null;
+    ArrayList<Rec> arrayRec0=null;
+    ArrayList<Rec> arrayRec1=null;
+    ArrayList<Rec> arrayRec2=null;
     ListViewAdapter adapter=null;
-
+    private NotificationManager notification;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
     private void cargarLista(){
@@ -63,9 +68,40 @@ public class MainActivity extends AppCompatActivity {
         while(res.moveToNext()){
             arrayRec.add(new Rec(res.getString(0),res.getString(1),res.getString(2),res.getString(3),res.getInt(4)));
         }
-        
+        while (!arrayRec.isEmpty()){
+            switch (arrayRec.get(0).getImportancia()){
+                case 0:
+                    arrayRec0.add(arrayRec.get(0));
+                    arrayRec.remove(0);
+                    break;
+                case 1:
+                    arrayRec1.add(arrayRec.get(0));
+                    arrayRec.remove(0);
+                    break;
+                case 2:
+                    arrayRec2.add(arrayRec.get(0));
+                    arrayRec.remove(0);
+                    break;
+            }
+
+        }
+        if (arrayRec.isEmpty()){
+            while(!arrayRec0.isEmpty()){
+                arrayRec.add(arrayRec0.get(0));
+                arrayRec0.remove(0);
+            }
+            while(!arrayRec1.isEmpty()){
+                arrayRec.add(arrayRec0.get(0));
+                arrayRec1.remove(0);
+            }
+            while(!arrayRec2.isEmpty()){
+                arrayRec.add(arrayRec0.get(0));
+                arrayRec2.remove(0);
+            }
+        }
         adapter=new ListViewAdapter(arrayRec,this);
         lista.setAdapter(adapter);
+
     }
 
     public void onClick(View view){
