@@ -22,6 +22,8 @@
         <activity android:name=".Add_New_Reminder" />
         <activity android:name=".activity_Help" />
         <activity android:name=".Editar"></activity>
+
+        <receiver android:name=".Alarm_Receiver"/>
     </application>
 
 </manifest>

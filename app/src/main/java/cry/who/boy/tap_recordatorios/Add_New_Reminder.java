@@ -1,7 +1,9 @@
 package cry.who.boy.tap_recordatorios;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -39,7 +41,8 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
     private DatabaseHelper myDb;
     //Variables para saber la fecha de creación del recordatorio
     private int d_act, m_act, a_act;
-
+    AlarmManager alarm_manager;
+    PendingIntent pending_intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,9 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
                 finish();
             }
         });
+
+        //Alarm Manager
+        alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
         //Botones
         btn_ok = (Button) findViewById(R.id.btn_ok);
@@ -142,9 +148,19 @@ public class Add_New_Reminder extends AppCompatActivity implements View.OnClickL
 
     public void MandarDatos(View vista){
 
+        //Creamos un Intent para ir a la Clase Alarm_Receiver
+        Intent Nuevo_intent = new Intent(this, Alarm_Receiver.class);
+        //Creamos un Pending_Intent que retrase el intent
+        pending_intent = PendingIntent.getBroadcast(this, 0, Nuevo_intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        //Hacemos set al Alarm Manager
+        Calendar c = Calendar.getInstance();
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),
+                pending_intent);
+
         String Titulo = et_Titulo.getText().toString();
-        String Fecha = tv_fecha.getText().toString();// <---
-        String Hora = tv_hora.getText().toString();// <---
+        String Fecha = tv_fecha.getText().toString();//
+        String Hora = tv_hora.getText().toString();//
         String Desc = et_Desc.getText().toString();
         int Import =Importancia.getSelectedItemPosition();
         

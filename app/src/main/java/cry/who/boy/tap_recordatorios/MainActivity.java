@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper myDb;
     private ListView lista=null;
     ArrayList<Rec> arrayRec=null;
-    ArrayList<Rec> arrayRec0=null;
-    ArrayList<Rec> arrayRec1=null;
-    ArrayList<Rec> arrayRec2=null;
     ListViewAdapter adapter=null;
     private NotificationManager notification;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
         lista=(ListView)(findViewById(R.id.Lista));
         cargarLista();
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, "Deje presionado un elemento para Editarlo o Eliminarlo ",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
         lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         while(res.moveToNext()){
             arrayRec.add(new Rec(res.getString(0),res.getString(1),res.getString(2),res.getString(3),res.getInt(4)));
         }
+
         Collections.sort(arrayRec);
         
         adapter=new ListViewAdapter(arrayRec,this);
